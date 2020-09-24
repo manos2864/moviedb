@@ -1,0 +1,22 @@
+@import "./colors";
+
+$font-fam: "Ubuntu Mono", monospace;
+$font-family-base: $font-fam;
+
+$navbar-light-color: rgba($primary, 0.5);
+$navbar-light-hover-color: rgba($primary, 0.7);
+
+$breadcrumb-bg: $info;
+$navbar-dark-color: $info;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$theme-colors: (
+  "primary": $primary,
+  "info": $info,
+  "danger": $danger,
+);
+
+.btn-outline-success {
+  @include button-outline-variant($info, #222222, lighten($info, 20%), $info);
+}

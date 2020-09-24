@@ -1,0 +1,13 @@
+@import "../../colors";
+
+.brandLogo {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.navItem {
+  border-right: 1px solid $info;
+  &:last-child {
+    border-right: 0;
+  }
+}

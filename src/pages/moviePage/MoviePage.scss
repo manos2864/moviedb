@@ -1,0 +1,10 @@
+.imageBadge {
+  position: relative;
+  img {
+    min-width: 250px;
+  }
+  .customBadge {
+    left: 0;
+    font-size: 1.3rem;
+  }
+}

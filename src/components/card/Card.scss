@@ -1,0 +1,9 @@
+.textCard::after {
+  content: "...";
+}
+
+.customCard {
+  &:hover {
+    cursor: pointer;
+  }
+}
