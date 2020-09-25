@@ -1,6 +1,8 @@
-@media only screen and (max-width: 768px) {
-  .dropdown-toggle,
-  .dropdown-menu {
+@import "../../breakpoints";
+
+.dropdown-toggle,
+.dropdown-menu {
+  @include breakpoint(phone) {
     width: 100%;
   }
 }
