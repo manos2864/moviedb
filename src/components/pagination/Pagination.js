@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import Pagination from "react-bootstrap/Pagination";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import PropTypes from "prop-types";
 
 const CustomPagination = (props) => {
@@ -32,38 +34,42 @@ const CustomPagination = (props) => {
   }
 
   return (
-    <Pagination className="justify-content-center">
-      <Pagination.First
-        onClick={() => {
-          pageHandler(query, 1);
-          scrollToTop();
-        }}
-      />
-      {active > 1 && (
-        <Pagination.Prev
-          onClick={() => {
-            pageHandler(query, active - 1);
-            scrollToTop();
-          }}
-        />
-      )}
-      {/* How many items to show in the middle of pagination */}
-      {items.slice(active - 1, active + 7)}
-      {active < pages && (
-        <Pagination.Next
-          onClick={() => {
-            pageHandler(query, active + 1);
-            scrollToTop();
-          }}
-        />
-      )}
-      <Pagination.Last
-        onClick={() => {
-          pageHandler(query, pages);
-          scrollToTop();
-        }}
-      />
-    </Pagination>
+    <Row className="p-4">
+      <Col className="text-center">
+        <Pagination className="justify-content-center flex-wrap">
+          <Pagination.First
+            onClick={() => {
+              pageHandler(query, 1);
+              scrollToTop();
+            }}
+          />
+          {active > 1 && (
+            <Pagination.Prev
+              onClick={() => {
+                pageHandler(query, active - 1);
+                scrollToTop();
+              }}
+            />
+          )}
+          {/* How many items to show in the middle of pagination */}
+          {items.slice(active - 1, active + 7)}
+          {active < pages && (
+            <Pagination.Next
+              onClick={() => {
+                pageHandler(query, active + 1);
+                scrollToTop();
+              }}
+            />
+          )}
+          <Pagination.Last
+            onClick={() => {
+              pageHandler(query, pages);
+              scrollToTop();
+            }}
+          />
+        </Pagination>
+      </Col>
+    </Row>
   );
 };
 

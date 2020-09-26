@@ -1,15 +1,10 @@
-import React, { Component, Suspense, lazy, Fragment } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React, { Component, Fragment } from "react";
 
 import { withRouter } from "react-router-dom";
 
-import CustomSpinner from "../../components/spinner/Spinner";
 import CustomPagination from "../../components/pagination/Pagination";
 import Toolbar from "../../components/toolbar/Toolbar";
-
-// Lazy load
-const CustomCard = lazy(() => import("../../components/card/Card"));
+import CardLayout from "../../components/card/CardLayout";
 
 class Home extends Component {
   constructor(props) {
@@ -57,36 +52,18 @@ class Home extends Component {
           filterHandler={this.filterHandler}
           filter={this.state.filter}
         />
-        <Row className="align-items-center bg-info p-sm-2 p-md-2 ml-0 mr-0">
-          {this.props.data.length > 0 &&
-            this.props.data
-              .filter((movie) => movie.poster_path) //Only Movies with Images Allowed
-              .sort((a, b) => this.filterSorting(a, b))
-              .map((movie) => (
-                <Suspense key={movie.id} fallback={<CustomSpinner />}>
-                  <CustomCard
-                    movies={movie}
-                    goToMoviePage={this.movieSelectedHandler}
-                  />
-                </Suspense>
-              ))}
+        <CardLayout
+          data={this.props.data}
+          filterSorting={this.filterSorting}
+          goToMoviePage={this.movieSelectedHandler}
+        />
 
-          {this.props.current_page < this.props.total.pages && (
-            <h3 className="text-primary d-none d-md-block">
-              Go to page {this.props.current_page + 1}
-            </h3>
-          )}
-        </Row>
-        <Row className="p-4">
-          <Col className="text-center">
-            <CustomPagination
-              query={this.props.query}
-              active={this.props.current_page}
-              pages={this.props.total.pages}
-              pageHandler={this.props.apiHandler}
-            />
-          </Col>
-        </Row>
+        <CustomPagination
+          query={this.props.query}
+          active={this.props.current_page}
+          pages={this.props.total.pages}
+          pageHandler={this.props.apiHandler}
+        />
       </Fragment>
     );
   }
