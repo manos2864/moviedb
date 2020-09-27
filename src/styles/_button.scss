@@ -1,0 +1,3 @@
+.btn-outline-success {
+  @include button-outline-variant($info, #222222, lighten($info, 20%), $info);
+}
