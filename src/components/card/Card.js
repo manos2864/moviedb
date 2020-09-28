@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import PropTypes from "prop-types";
 
+import CustomButton from "../button/Button";
 import "./Card.scss";
 
 const CustomCard = (props) => {
@@ -35,6 +36,7 @@ const CustomCard = (props) => {
           <Card.Text>
             <span className="textCard">{overview.slice(0, 100)}</span>
           </Card.Text>
+          <CustomButton btnName="See more" />
         </Card.Body>
         <Card.Footer>
           <small className="text-muted">

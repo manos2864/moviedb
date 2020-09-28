@@ -1,0 +1,65 @@
+@import "../../styles/colors";
+
+.customBtn {
+  border-top: 2px solid $primary;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+}
+
+.startAnimation {
+  animation: hoverBtnStart 1s linear;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+}
+
+.endAnimation {
+  animation: hoverBtnEnd 0.8s linear;
+}
+
+@keyframes hoverBtnStart {
+  0% {
+    border-top: 2px solid $primary;
+  }
+  40% {
+    border-top: 2px solid $primary;
+    border-right: 2px solid $primary;
+  }
+  80% {
+    border-top: 2px solid $primary;
+    border-right: 2px solid $primary;
+    border-bottom: 2px solid $primary;
+  }
+  100% {
+    border-top: 2px solid $primary;
+    border-right: 2px solid $primary;
+    border-bottom: 2px solid $primary;
+    border-left: 2px solid $primary;
+    color: $primary;
+  }
+}
+
+@keyframes hoverBtnEnd {
+  0% {
+    border-top: 2px solid $primary;
+    border-right: 2px solid $primary;
+    border-bottom: 2px solid $primary;
+    border-left: 2px solid $primary;
+    color: $primary;
+  }
+  40% {
+    border-top: 2px solid $primary;
+    border-right: 2px solid $primary;
+    border-bottom: 2px solid $primary;
+  }
+  80% {
+    border-top: 2px solid $primary;
+    border-right: 2px solid $primary;
+  }
+  100% {
+    border-top: 2px solid $primary;
+  }
+}
