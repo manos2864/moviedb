@@ -1,0 +1,66 @@
+@import "../../styles/breakpoints";
+
+.animBike {
+  max-width: 100%;
+  background: url("../../assets/home/city.svg") center bottom no-repeat;
+  background-origin: border-box;
+  @include breakpoint(phone) {
+    background-size: cover;
+  }
+  #right-wheel,
+  #left-wheel {
+    animation: wheel 2s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  #man-bike {
+    animation: bike 1s ease-in-out infinite alternate;
+    transform-origin: bottom;
+  }
+  #hat {
+    animation: hat 1s ease-in-out infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  #logo {
+    animation: logo 1s ease-in-out infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+}
+
+@keyframes wheel {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes bike {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(10deg);
+  }
+}
+
+@keyframes hat {
+  from {
+    transform: translateY(0%) rotateZ(0deg);
+  }
+  to {
+    transform: translateY(10%) rotateZ(10deg);
+  }
+}
+
+@keyframes logo {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(10deg);
+  }
+}

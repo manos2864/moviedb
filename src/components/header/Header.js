@@ -31,7 +31,7 @@ const Header = (props) => {
       bg="primary"
       variant="dark"
       expand="lg"
-      className="rounded-bottom mb-5"
+      className="rounded-bottom mb-2"
     >
       <Navbar.Brand
         onClick={() => goToPage("")}

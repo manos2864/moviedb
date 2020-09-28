@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import CustomPagination from "../../components/pagination/Pagination";
 import Toolbar from "../../components/toolbar/Toolbar";
 import CardLayout from "../../components/card/CardLayout";
+import AnimatedBike from "../../components/animatedBike/AnimatedBike";
 
 class Home extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
+        <AnimatedBike />
         <Toolbar
           results={this.props.total.results}
           filterHandler={this.filterHandler}
