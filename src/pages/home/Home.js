@@ -6,6 +6,8 @@ import CustomPagination from "../../components/pagination/Pagination";
 import Toolbar from "../../components/toolbar/Toolbar";
 import CardLayout from "../../components/card/CardLayout";
 import AnimatedBike from "../../components/animatedBike/AnimatedBike";
+import AnimatedHorror from "../../components/animatedHorror/AnimatedHorror";
+import CustomCarousel from "../../components/carousel/Carousel";
 
 class Home extends Component {
   constructor(props) {
@@ -48,7 +50,21 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <AnimatedBike />
+        <CustomCarousel
+          slideText={{
+            horror: {
+              h3Text: "Welcome to the Movie World!",
+              pText: "Search and find informations for your movie!",
+              component: <AnimatedHorror />,
+            },
+            bike: {
+              h3Text: "Easy navigation like riding a bike!",
+              pText: "Hey! Enjoy the ride to this amazing site.",
+              component: <AnimatedBike />,
+            },
+          }}
+        />
+
         <Toolbar
           results={this.props.total.results}
           filterHandler={this.filterHandler}

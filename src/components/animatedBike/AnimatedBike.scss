@@ -25,11 +25,6 @@
     transform-origin: center;
     transform-box: fill-box;
   }
-  #logo {
-    animation: logo 1s ease-in-out infinite alternate;
-    transform-origin: center;
-    transform-box: fill-box;
-  }
 }
 
 @keyframes wheel {
@@ -56,15 +51,6 @@
   }
   to {
     transform: translateY(10%) rotateZ(10deg);
-  }
-}
-
-@keyframes logo {
-  from {
-    transform: rotateZ(0deg);
-  }
-  to {
-    transform: rotateZ(10deg);
   }
 }
 

@@ -1,0 +1,206 @@
+@import "../../styles/breakpoints";
+
+.animHorror {
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  @include breakpoint(phone) {
+    background-size: cover;
+  }
+
+  #pillow {
+    animation: pillow 2s ease-in-out infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  #popcorn-1 {
+    animation: popcorn1 2s linear infinite;
+    transform-origin: center;
+  }
+
+  #popcorn-2 {
+    animation: popcorn2 2s linear infinite;
+    transform-origin: center;
+  }
+
+  #popcorn-3 {
+    animation: popcorn3 2s linear infinite;
+    transform-origin: center;
+  }
+
+  #popcorn-4 {
+    animation: popcorn4 2s linear infinite alternate;
+    transform-origin: center;
+  }
+
+  #tv-glow {
+    animation: tvGlow 2s linear infinite alternate;
+  }
+
+  #popcorn-5 {
+    animation: popcorn5 5s linear infinite;
+    transform-origin: center;
+  }
+
+  #white-hand-right {
+    animation: whitehandRight 2s ease-in-out infinite alternate;
+  }
+
+  // left hand
+  #white-hand-right_2,
+  #black-hand-left {
+    animation: whiteHandLeft 2s ease-in-out infinite alternate;
+  }
+
+  #white-head {
+    animation: whiteHead 2s linear infinite alternate;
+  }
+
+  #black-head {
+    animation: blackHead 2s linear infinite alternate;
+    transform-origin: center;
+  }
+
+  #black-hand-right {
+    animation: blackHandRight 2s ease-in-out infinite alternate;
+    transform-origin: right;
+  }
+
+  #blanket {
+    animation: blanket 2s linear infinite alternate;
+    animation-delay: 0.2s;
+    transform-origin: center;
+  }
+}
+
+@keyframes tvGlow {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popcorn5 {
+  0% {
+    transform: translateX(-5%) translateY(17.5%);
+  }
+  100% {
+    transform: translateX(-7%) translateY(20%);
+  }
+}
+
+@keyframes popcorn4 {
+  0% {
+    transform: translateX(-5%) translateY(14%);
+  }
+  100% {
+    transform: translateX(-3%) translateY(15%);
+  }
+}
+
+@keyframes popcorn3 {
+  0% {
+    transform: translateX(0%) translateY(8%) rotateZ(0deg);
+  }
+  40% {
+    transform: translateX(3%) translateY(15%);
+  }
+  80% {
+    transform: translateX(5%) translateY(32%);
+  }
+  100% {
+    transform: translateX(5%) translateY(32%) rotateZ(10deg);
+  }
+}
+
+@keyframes popcorn2 {
+  0% {
+    transform: translateX(-10%) translateY(0%) rotateZ(0deg);
+  }
+  80% {
+    transform: translateX(-12%) translateY(5%);
+  }
+  100% {
+    transform: translateX(-14%) translateY(16%) rotateZ(5deg);
+  }
+}
+
+@keyframes popcorn1 {
+  0% {
+    transform: translateX(-15%) translateY(-6%);
+  }
+  40% {
+    transform: translateX(-16%) translateY(-8%);
+  }
+  80% {
+    transform: translateX(-16%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-10%) translateY(30%);
+  }
+}
+
+@keyframes blanket {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(1%);
+  }
+}
+
+@keyframes blackHead {
+  from {
+    transform: rotateZ(0deg) translateY(0);
+  }
+  to {
+    transform: rotateZ(1deg) translateY(1%);
+  }
+}
+
+@keyframes blackHandRight {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(1deg);
+  }
+}
+
+@keyframes whiteHandLeft {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(1deg);
+  }
+}
+
+@keyframes whiteHead {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(10deg);
+  }
+}
+
+@keyframes whitehandRight {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(-1deg);
+  }
+}
+
+@keyframes pillow {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(10deg);
+  }
+}
