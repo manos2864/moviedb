@@ -5,22 +5,35 @@ import "./Button.scss";
 
 const CustomButton = (props) => {
   const { btnName } = props;
-  const btnCustom = useRef();
+  const btnTop = useRef();
+  const btnRight = useRef();
+  const btnLeft = useRef();
+  const btnBottom = useRef();
+  const btnText = useRef();
+
   return (
-    <button
+    <div
+      className="button"
       onMouseEnter={() => {
-        btnCustom.current.classList.add("startAnimation");
-        btnCustom.current.classList.remove("endAnimation");
+        btnRight.current.classList.add("startAnimRight");
+        btnLeft.current.classList.add("startAnimLeft");
+        btnBottom.current.classList.add("startAnimBottom");
+        btnText.current.classList.add("startAnimText");
       }}
-      onMouseLeave={() => {
-        btnCustom.current.classList.remove("startAnimation");
-        btnCustom.current.classList.add("endAnimation");
-      }}
-      ref={btnCustom}
-      className="customBtn"
+      // Removing our animation onMouseLeave
+      // onMouseLeave={() => {
+      //   btnLeft.current.classList.remove("startAnimLeft");
+      //   btnBottom.current.classList.remove("startAnimBottom");
+      //   btnRight.current.classList.remove("startAnimRight");
+      //   btnText.current.classList.remove("startAnimText");
+      // }}
     >
-      {btnName}
-    </button>
+      <div ref={btnTop} className="top"></div>
+      <div ref={btnLeft} className="left"></div>
+      <p ref={btnText}>{btnName}</p>
+      <div ref={btnRight} className="right"></div>
+      <div ref={btnBottom} className="bottom"></div>
+    </div>
   );
 };
 
