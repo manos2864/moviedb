@@ -9,9 +9,26 @@ import "./MoviePage.scss";
 import CustomBreadcrumb from "../../components/breadcrumb/Breadcrumb";
 
 class MoviePage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      imageStatus: "loading",
+    };
+    this.imageLoaded = this.handleImageLoaded.bind();
+    this.imageErrored = this.handleImageErrored.bind();
+  }
+
   componentDidMount() {
     this.props.apiOneMovieHandler(this.props.match.params.id);
   }
+
+  handleImageLoaded = () => {
+    this.setState({ imageStatus: "loaded" });
+  };
+
+  handleImageErrored = () => {
+    this.setState({ imageStatus: "error" });
+  };
 
   movieRender = () => {
     const {
@@ -30,17 +47,21 @@ class MoviePage extends Component {
       <Fragment>
         <Col md={12} lg={6} xl={6}>
           <div className="imageBadge">
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-              alt={original_title}
-              className="w-100"
-            />
             <Badge
               variant="primary"
               className="position-absolute p-3 customBadge"
             >
               {vote_average} / 10
             </Badge>
+            <div className="imagePost">
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                alt={original_title}
+                onLoad={this.imageLoaded}
+                onError={this.imageErrored}
+                className="w-100 p-3"
+              />
+            </div>
           </div>
         </Col>
         <Col md={12} lg={6} xl={6} className="p-3">
@@ -82,12 +103,74 @@ class MoviePage extends Component {
     );
   };
 
+  prerender = () => {
+    return (
+      <Fragment>
+        {this.state.imageStatus !== "loaded" && (
+          <Col md={12} lg={6} xl={6}>
+            <div className="imageBadge">
+              <div className="imagePost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="100%"
+                  height="500"
+                  className="p-3"
+                  viewBox="0 0 100% 500"
+                >
+                  <rect fill="#ddd" width="100%" height="500" />
+                  <text
+                    fill="rgba(0,0,0,0.5)"
+                    font-size="30"
+                    dy="10.5"
+                    font-weight="bold"
+                    x="50%"
+                    y="50%"
+                    text-anchor="middle"
+                  >
+                    Placeholder
+                  </text>
+                </svg>
+              </div>
+            </div>
+          </Col>
+        )}
+        {this.state.imageStatus !== "loaded" && (
+          <Col md={12} lg={6} xl={6} className="p-3">
+            <h1 className="text-primary font-weight-bold">
+              <div className="w-100 placeholderText"></div>
+            </h1>
+            <h3 className="text-muted mt-2 mb-2">
+              <div className="w-75 placeholderText"></div>
+            </h3>
+            <small className="mt-2 mb-2">Genre: No Idea</small>
+
+            <h3 className="text-primary mt-4 pt-4 mb-2 font-weight-bold border-top border-primary">
+              Overview
+            </h3>
+            <p className="mt-2 mb-2">
+              <div className="w-100 placeholderText"></div>
+              <div className="w-100 mt-3 placeholderText"></div>
+              <div className="w-50 mt-3 placeholderText"></div>
+              <div className="w-50 mt-3 placeholderText"></div>
+            </p>
+            <small className="d-none d-block mt-2 mb-2 pb-4 border-bottom border-primary">
+              Release Date: Who knows? Probably TBA
+            </small>
+            <h3 className="text-primary font-weight-bold">
+              Production Companies
+            </h3>
+          </Col>
+        )}
+      </Fragment>
+    );
+  };
+
   render() {
     return (
       <Fragment>
         <CustomBreadcrumb />
         <Row className="p-sm-2 p-md-4 bg-info text-left" noGutters>
-          {this.props.selectedMovie && this.movieRender()}
+          {this.props.selectedMovie ? this.movieRender() : this.prerender()}
         </Row>
       </Fragment>
     );
