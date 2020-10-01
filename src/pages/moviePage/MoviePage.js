@@ -118,17 +118,6 @@ class MoviePage extends Component {
                   viewBox="0 0 100% 500"
                 >
                   <rect fill="#ddd" width="100%" height="500" />
-                  <text
-                    fill="rgba(0,0,0,0.5)"
-                    font-size="30"
-                    dy="10.5"
-                    font-weight="bold"
-                    x="50%"
-                    y="50%"
-                    text-anchor="middle"
-                  >
-                    Placeholder
-                  </text>
                 </svg>
               </div>
             </div>
