@@ -117,7 +117,7 @@ class MoviePage extends Component {
                   className="p-3"
                   viewBox="0 0 100% 500"
                 >
-                  <rect fill="#ddd" width="100%" height="500" />
+                  <rect width="100%" height="500" />
                 </svg>
               </div>
             </div>
