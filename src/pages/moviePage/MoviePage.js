@@ -136,12 +136,12 @@ class MoviePage extends Component {
             <h3 className="text-primary mt-4 pt-4 mb-2 font-weight-bold border-top border-primary">
               Overview
             </h3>
-            <p className="mt-2 mb-2">
-              <div className="w-100 placeholderText"></div>
-              <div className="w-100 mt-3 placeholderText"></div>
-              <div className="w-50 mt-3 placeholderText"></div>
-              <div className="w-50 mt-3 placeholderText"></div>
-            </p>
+
+            <div className="w-100 placeholderText"></div>
+            <div className="w-100 mt-3 placeholderText"></div>
+            <div className="w-50 mt-3 placeholderText"></div>
+            <div className="w-50 mt-3 placeholderText"></div>
+
             <small className="d-none d-block mt-2 mb-2 pb-4 border-bottom border-primary">
               Release Date: Who knows? Probably TBA
             </small>
