@@ -13,7 +13,10 @@ class About extends Component {
       >
         <Col>
           <h1 className="mt-5">About us</h1>
-          <p>The movie.db website is created for demonstration purpose only.</p>
+          <p>
+            The movie.db website has been created for demonstration purpose
+            only.
+          </p>
         </Col>
         <img src={Fellowship} alt="lotro of the rings" className="w-100" />
       </Row>

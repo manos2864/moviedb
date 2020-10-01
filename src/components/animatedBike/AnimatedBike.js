@@ -7,7 +7,7 @@ const AnimatedBike = () => {
     <div className="animBike mb-2 ">
       <svg
         width="60%"
-        viewBox="0 0 1058 785"
+        viewBox="0 0 1058 795"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         xlinkHref="http://www.w3.org/1999/xlink"

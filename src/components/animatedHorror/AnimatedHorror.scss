@@ -3,6 +3,7 @@
 .animHorror {
   max-width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
+  max-height: 500px;
   @include breakpoint(phone) {
     background-size: cover;
   }

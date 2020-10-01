@@ -6,7 +6,7 @@
   background-origin: border-box;
   background-size: 160%;
   animation: bg_slide 64s linear infinite;
-
+  max-height: 500px;
   @include breakpoint(phone) {
     background-size: cover;
   }
