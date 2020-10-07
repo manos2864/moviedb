@@ -1,15 +1,19 @@
 import React from "react";
 import Toast from "react-bootstrap/Toast";
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 
-const CustomToast = (props) => {
-  const { error, errorHandler } = props;
+import { setError } from "../../store/actions/action";
+import { errorSelectorMemo } from "../../store/selectors/selectors";
+
+const CustomToast = () => {
+  const error = useSelector(errorSelectorMemo);
+  const dispatch = useDispatch();
 
   return (
     <Toast
       className="fixed-bottom mx-auto mb-5"
       show={error !== null}
-      onClose={() => errorHandler()}
+      onClose={() => dispatch(setError())}
       delay={3000}
       autohide
     >
@@ -21,9 +25,4 @@ const CustomToast = (props) => {
   );
 };
 
-export default React.memo(CustomToast);
-
-CustomToast.propTypes = {
-  error: PropTypes.string,
-  errorHandler: PropTypes.func,
-};
+export default CustomToast;

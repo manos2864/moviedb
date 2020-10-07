@@ -1,36 +1,36 @@
-import React, { Component, Fragment } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useEffect, Fragment, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/Badge";
+import PropTypes from "prop-types";
 
 import "./MoviePage.scss";
 import CustomBreadcrumb from "../../components/breadcrumb/Breadcrumb";
+import { asyncGetOneMovie } from "../../store/actions/action";
+import { selectedMovieSelectorMemo } from "../../store/selectors/selectors";
 
-class MoviePage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      imageStatus: "loading",
-    };
-    this.imageLoaded = this.handleImageLoaded.bind();
-    this.imageErrored = this.handleImageErrored.bind();
-  }
+const MoviePage = ({ router }) => {
+  const [imageStatus, setImageStatus] = useState("loading");
 
-  componentDidMount() {
-    this.props.apiOneMovieHandler(this.props.match.params.id);
-  }
+  const dispatch = useDispatch();
 
-  handleImageLoaded = () => {
-    this.setState({ imageStatus: "loaded" });
+  const selectedMovie = useSelector(selectedMovieSelectorMemo);
+
+  useEffect(() => {
+    dispatch(asyncGetOneMovie(router.match.params.id));
+  }, [dispatch, router.match.params.id]);
+
+  const handleImageLoaded = () => {
+    setImageStatus("loaded");
   };
 
-  handleImageErrored = () => {
-    this.setState({ imageStatus: "error" });
+  const handleImageErrored = () => {
+    setImageStatus("error");
   };
 
-  movieRender = () => {
+  const movieRender = () => {
     const {
       original_title,
       title,
@@ -41,7 +41,7 @@ class MoviePage extends Component {
       vote_average,
       production_companies,
       genres,
-    } = this.props.selectedMovie;
+    } = selectedMovie;
 
     return (
       <Fragment>
@@ -55,10 +55,10 @@ class MoviePage extends Component {
             </Badge>
             <div className="imagePost">
               <img
-                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                 alt={original_title}
-                onLoad={this.imageLoaded}
-                onError={this.imageErrored}
+                onLoad={handleImageLoaded}
+                onError={handleImageErrored}
                 className="w-100 p-3"
               />
             </div>
@@ -103,10 +103,10 @@ class MoviePage extends Component {
     );
   };
 
-  prerender = () => {
+  const prerender = () => {
     return (
       <Fragment>
-        {this.state.imageStatus !== "loaded" && (
+        {imageStatus !== "loaded" && (
           <Col md={12} lg={6} xl={6}>
             <div className="imageBadge">
               <div className="imagePost">
@@ -123,7 +123,7 @@ class MoviePage extends Component {
             </div>
           </Col>
         )}
-        {this.state.imageStatus !== "loaded" && (
+        {imageStatus !== "loaded" && (
           <Col md={12} lg={6} xl={6} className="p-3">
             <h1 className="text-primary font-weight-bold">
               <div className="w-100 placeholderText"></div>
@@ -136,12 +136,12 @@ class MoviePage extends Component {
             <h3 className="text-primary mt-4 pt-4 mb-2 font-weight-bold border-top border-primary">
               Overview
             </h3>
-            <p className="mt-2 mb-2">
-              <div className="w-100 placeholderText"></div>
-              <div className="w-100 mt-3 placeholderText"></div>
-              <div className="w-50 mt-3 placeholderText"></div>
-              <div className="w-50 mt-3 placeholderText"></div>
-            </p>
+
+            <div className="w-100 placeholderText"></div>
+            <div className="w-100 mt-3 placeholderText"></div>
+            <div className="w-50 mt-3 placeholderText"></div>
+            <div className="w-50 mt-3 placeholderText"></div>
+
             <small className="d-none d-block mt-2 mb-2 pb-4 border-bottom border-primary">
               Release Date: Who knows? Probably TBA
             </small>
@@ -154,16 +154,18 @@ class MoviePage extends Component {
     );
   };
 
-  render() {
-    return (
-      <Fragment>
-        <CustomBreadcrumb />
-        <Row className="p-sm-2 p-md-4 bg-info text-left" noGutters>
-          {this.props.selectedMovie ? this.movieRender() : this.prerender()}
-        </Row>
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <CustomBreadcrumb />
+      <Row className="p-sm-2 p-md-4 bg-info text-left" noGutters>
+        {selectedMovie ? movieRender() : prerender()}
+      </Row>
+    </Fragment>
+  );
+};
 
-export default React.memo(withRouter(MoviePage));
+export default MoviePage;
+
+MoviePage.propTypes = {
+  router: PropTypes.object,
+};

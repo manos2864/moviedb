@@ -7,7 +7,7 @@ import "./Carousel.scss";
 const CustomCarousel = (props) => {
   const { slideText } = props;
   return (
-    <Carousel>
+    <Carousel className="d-none d-sm-block">
       <Carousel.Item>
         {slideText.horror.component}
         <Carousel.Caption className="captionColor">

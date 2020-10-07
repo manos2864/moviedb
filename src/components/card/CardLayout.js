@@ -13,7 +13,6 @@ const CardLayout = (props) => {
       <CardGroup>
         {data.length > 0 &&
           data
-            .filter((movie) => movie.poster_path) //Only Movies with Images Allowed
             .sort((a, b) => filterSorting(a, b))
             .map((movie) => (
               <Suspense key={movie.id} fallback={<CustomSpinner />}>

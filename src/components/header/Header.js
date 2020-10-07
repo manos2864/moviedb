@@ -3,22 +3,24 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
+import { useDispatch } from "react-redux";
 
 import { withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import PropTypes from "prop-types";
 
 import logo from "../../assets/logo/logo.png";
 import Input from "../input/Input";
 import "./Header.scss";
 
+import { asyncGet } from "../../store/actions/action";
+
 const Header = (props) => {
-  const { queryHandler } = props;
+  const dispatch = useDispatch();
 
   const searchHandler = (event) => {
     event.preventDefault();
     if (event.target[0].value.length > 2) {
-      queryHandler(event.target[0].value, 1);
+      dispatch(asyncGet(event.target[0].value, 1));
     }
   };
 
@@ -82,7 +84,3 @@ const Header = (props) => {
 };
 
 export default withRouter(Header);
-
-Header.propTypes = {
-  queryHandler: PropTypes.func,
-};
