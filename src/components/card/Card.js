@@ -26,7 +26,7 @@ const CustomCard = (props) => {
       >
         <Card.Img
           variant="top"
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         />
         <Card.Body>
           <Card.Title>{title}</Card.Title>

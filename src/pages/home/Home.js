@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-
-import { withRouter } from "react-router-dom";
+import React, { useState, useEffect, Fragment } from "react";
+import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 
 import CustomPagination from "../../components/pagination/Pagination";
 import Toolbar from "../../components/toolbar/Toolbar";
@@ -9,31 +9,41 @@ import AnimatedBike from "../../components/animatedBike/AnimatedBike";
 import AnimatedHorror from "../../components/animatedHorror/AnimatedHorror";
 import CustomCarousel from "../../components/carousel/Carousel";
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filter: "release_date", // default filter
-    };
-  }
+import { asyncGet } from "../../store/actions/action";
+import {
+  dataFilterSelectorMemo,
+  totalSelectorMemo,
+  querySelectorMemo,
+  current_pageSelectorMemo,
+} from "../../store/selectors/selectors";
+
+const Home = ({ router }) => {
+  const [filter, setFilter] = useState("release_date");
+
+  const dispatch = useDispatch();
+
+  const data = useSelector(dataFilterSelectorMemo);
+  const total = useSelector(totalSelectorMemo);
+  const query = useSelector(querySelectorMemo);
+  const current_page = useSelector(current_pageSelectorMemo);
 
   // Default Movies Data for the Home Page
-  componentDidMount() {
-    this.props.apiHandler("a", 1);
-  }
+  useEffect(() => {
+    dispatch(asyncGet("a", 1));
+  }, [dispatch]);
 
-  filterHandler = (myFilter) => {
-    this.setState({ filter: myFilter });
+  const filterHandler = (myFilter) => {
+    setFilter(myFilter);
   };
 
-  movieSelectedHandler = (id, title) => {
-    this.props.history.push({
+  const movieSelectedHandler = (id, title) => {
+    router.history.push({
       pathname: "/movie/" + title.toLowerCase().replaceAll(" ", "-") + "&" + id,
     });
   };
 
-  filterSorting = (a, b) => {
-    switch (this.state.filter) {
+  const filterSorting = (a, b) => {
+    switch (filter) {
       case "release_date":
         const second = Date.parse(b.release_date);
         const first = Date.parse(a.release_date);
@@ -47,44 +57,47 @@ class Home extends Component {
     }
   };
 
-  render() {
-    return (
-      <Fragment>
-        <CustomCarousel
-          slideText={{
-            horror: {
-              h3Text: "Welcome to the Movie World!",
-              pText: "Search and find informations for your movie!",
-              component: <AnimatedHorror />,
-            },
-            bike: {
-              h3Text: "Easy navigation like riding a bike!",
-              pText: "Hey! Enjoy the ride to this amazing site.",
-              component: <AnimatedBike />,
-            },
-          }}
-        />
+  return (
+    <Fragment>
+      <CustomCarousel
+        slideText={{
+          horror: {
+            h3Text: "Welcome to the Movie World!",
+            pText: "Search and find informations for your movie!",
+            component: <AnimatedHorror />,
+          },
+          bike: {
+            h3Text: "Easy navigation like riding a bike!",
+            pText: "Hey! Enjoy the ride to this amazing site.",
+            component: <AnimatedBike />,
+          },
+        }}
+      />
 
-        <Toolbar
-          results={this.props.total.results}
-          filterHandler={this.filterHandler}
-          filter={this.state.filter}
-        />
-        <CardLayout
-          data={this.props.data}
-          filterSorting={this.filterSorting}
-          goToMoviePage={this.movieSelectedHandler}
-        />
+      <Toolbar
+        results={total.results}
+        filterHandler={filterHandler}
+        filter={filter}
+      />
 
-        <CustomPagination
-          query={this.props.query}
-          active={this.props.current_page}
-          pages={this.props.total.pages}
-          pageHandler={this.props.apiHandler}
-        />
-      </Fragment>
-    );
-  }
-}
+      <CardLayout
+        data={data}
+        filterSorting={filterSorting}
+        goToMoviePage={movieSelectedHandler}
+      />
 
-export default withRouter(Home);
+      <CustomPagination
+        query={query}
+        active={current_page}
+        pages={total.pages}
+        pageHandler={(query, num) => dispatch(asyncGet(query, num))}
+      />
+    </Fragment>
+  );
+};
+
+export default Home;
+
+Home.propTypes = {
+  router: PropTypes.object,
+};
