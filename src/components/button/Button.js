@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 
 import "./Button.scss";
 
-const CustomButton = (props) => {
-  const { btnName } = props;
+const CustomButton = ({ btnName }) => {
   const btnTop = useRef();
   const btnRight = useRef();
   const btnLeft = useRef();

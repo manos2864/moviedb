@@ -4,9 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PropTypes from "prop-types";
 
-const CustomPagination = (props) => {
-  const { pages, active, pageHandler, query } = props;
-
+const CustomPagination = ({ pages, active, pageHandler, query }) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

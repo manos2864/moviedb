@@ -9,4 +9,4 @@ const CustomSpinner = () => {
   );
 };
 
-export default React.memo(CustomSpinner);
+export default CustomSpinner;

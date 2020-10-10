@@ -16,7 +16,11 @@ const CardLayout = (props) => {
             .sort((a, b) => filterSorting(a, b))
             .map((movie) => (
               <Suspense key={movie.id} fallback={<CustomSpinner />}>
-                <CustomCard movies={movie} goToMoviePage={goToMoviePage} />
+                <CustomCard
+                  key={movie.id}
+                  movies={movie}
+                  goToMoviePage={goToMoviePage}
+                />
               </Suspense>
             ))}
       </CardGroup>

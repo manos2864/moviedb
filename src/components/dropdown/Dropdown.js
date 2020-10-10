@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 
 import "./Dropdown.scss";
 
-const CustomDropdown = (props) => {
-  const { filterHandler, currentFilter } = props;
-
+const CustomDropdown = ({ filterHandler, currentFilter }) => {
   return (
     <DropdownButton id="dropdown-menu" title="Filters">
       <Dropdown.Divider />

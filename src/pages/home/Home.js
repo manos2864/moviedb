@@ -29,13 +29,15 @@ const Home = ({ router }) => {
 
   // Default Movies Data for the Home Page
   useEffect(() => {
-    dispatch(asyncGet("a", 1));
-  }, [dispatch]);
+    if (data.length <= 0) {
+      dispatch(asyncGet("a", 1));
+    }
+  }, [dispatch, data.length]);
 
   const filterHandler = (myFilter) => {
     setFilter(myFilter);
   };
-
+ 
   const movieSelectedHandler = (id, title) => {
     router.history.push({
       pathname: "/movie/" + title.toLowerCase().replaceAll(" ", "-") + "&" + id,
@@ -57,21 +59,34 @@ const Home = ({ router }) => {
     }
   };
 
+  // const carouselSlides = React.useMemo(() => ({
+  //   horror: {
+  //     h3Text: "Welcome to the Movie World!",
+  //     pText: "Search and find informations for your movie!",
+  //     component: <AnimatedHorror />,
+  //   },
+  //   bike: {
+  //     h3Text: "Easy navigation like riding a bike!",
+  //     pText: "Hey! Enjoy the ride to this amazing site.",
+  //     component: <AnimatedBike />,
+  //   },
+  // }),[])
+
   return (
     <Fragment>
       <CustomCarousel
         slideText={{
-          horror: {
-            h3Text: "Welcome to the Movie World!",
-            pText: "Search and find informations for your movie!",
-            component: <AnimatedHorror />,
-          },
-          bike: {
-            h3Text: "Easy navigation like riding a bike!",
-            pText: "Hey! Enjoy the ride to this amazing site.",
-            component: <AnimatedBike />,
-          },
-        }}
+    horror: {
+      h3Text: "Welcome to the Movie World!",
+      pText: "Search and find informations for your movie!",
+      component: <AnimatedHorror />,
+    },
+    bike: {
+      h3Text: "Easy navigation like riding a bike!",
+      pText: "Hey! Enjoy the ride to this amazing site.",
+      component: <AnimatedBike />,
+    },
+  }}
       />
 
       <Toolbar

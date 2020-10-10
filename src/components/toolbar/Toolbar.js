@@ -3,9 +3,7 @@ import { Row, Col } from "react-bootstrap";
 
 import CustomDropdown from "../dropdown/Dropdown";
 
-const Toolbar = (props) => {
-  const { results, filterHandler, filter } = props;
-
+const Toolbar = ({ results, filterHandler, filter }) => {
   return (
     <Row className="mb-2 bg-info p-sm-2 p-md-2 align-items-center" noGutters>
       <Col

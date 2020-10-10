@@ -810,4 +810,4 @@ const AnimatedHorror = () => {
   );
 };
 
-export default React.memo(AnimatedHorror);
+export default AnimatedHorror;

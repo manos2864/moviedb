@@ -2,7 +2,7 @@ import React from "react";
 
 import "./AnimatedBike.scss";
 
-const AnimatedBike = () => {
+const AnimatedBike = (props) => {
   return (
     <div className="animBike mb-2 ">
       <svg
@@ -387,4 +387,4 @@ const AnimatedBike = () => {
   );
 };
 
-export default React.memo(AnimatedBike);
+export default AnimatedBike;
